@@ -2,11 +2,18 @@
 #define LORRY_H_
 #include "Vehicle.h"
 
-class Lorry : private Vehicle {
+class Lorry : public Vehicle {
 public:
+	Lorry();
+	Lorry(unsigned int sizeOfEngine, unsigned int numberOfGears, unsigned int powerOfVehicle, unsigned int capacityOfLorry, bool canTransportLiquid);
+
+	unsigned GetCapacity() const;
+	bool CanTransportLiquids() const;
+
+	void SetCapacity(unsigned);
+	void SetLiquidSubstance(bool);
 private:
-	int capacity;
-	engineType engine;
+	unsigned int capacity;
 	bool liquidSubstance;
 };
 #endif

@@ -1,21 +1,21 @@
 #include "Vehicle.h"
 
-int Vehicle::counter = 0;
+unsigned long long Vehicle::counter = 0;
 
 Vehicle::Vehicle()
 :
 index(++counter),
+enable(true),
 engineSize(0),
-bootSize(0),
 nGears(0),
 power(0)
 {}
 
-Vehicle::Vehicle(int sizeOfEngine = 0, int sizeOfBoot = 0, int numberOfGears = 0, int powerOfVehicle = 0)
+Vehicle::Vehicle(unsigned int sizeOfEngine = 0, unsigned int numberOfGears = 0, unsigned int powerOfVehicle = 0)
 :
 index(++counter),
+enable(true),
 engineSize(sizeOfEngine),
-bootSize(sizeOfBoot),
 nGears(numberOfGears),
 power(powerOfVehicle)
 {}
@@ -39,22 +39,31 @@ bool Vehicle::Enable() const {
 	return enable;
 }
 
-int Vehicle::GetIndex() const {
+unsigned long long int Vehicle::GetIndex() const {
 	return index;
 }
 
-int Vehicle::GetEngineSize() const {
+unsigned int Vehicle::GetEngineSize() const {
 	return engineSize;
 }
 
-int Vehicle::GetBootSize() const {
-	return bootSize;
-}
-
-int Vehicle::GetNGears() const {
+unsigned int Vehicle::GetNGears() const {
 	return nGears;
 }
 
-int Vehicle::GetPower() const {
+unsigned int Vehicle::GetPower() const {
 	return power;
+}
+
+void Vehicle::SetEngineSize(unsigned int a) {
+	engineSize = a;
+}
+
+
+void Vehicle::SetNGears(unsigned int a) {
+	nGears = a;
+}
+
+void Vehicle::SetPower(unsigned int a) {
+	power = a;
 }

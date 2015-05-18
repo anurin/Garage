@@ -2,12 +2,22 @@
 #define MOTORCYCLE_H_
 #include "Vehicle.h"
 
-class Motorcycle : private Vehicle {
+enum bodyType { classic, chopper, cruiser, quad };
+
+class Motorcycle : public Vehicle {
 public:
-private:
-	bodyType type;
+	Motorcycle();
+	Motorcycle(unsigned int sizeOfEngine, unsigned int numberOfGears, unsigned int powerOfVehicle, bodyType typeOfBody, bool digitalsSpeedo);
+
+	bodyType GetBody() const;
+	bool IsDigitalSpeedo() const;
+
+	void SetBody(bodyType);
+	void SetDigitalSpeedo(bool);
+
+protected:
+	bodyType body;
 	bool digitalSpeedometer;
 };
 
-enum bodyType {classic, chopper, cruiser, quad};
 #endif
