@@ -1,27 +1,18 @@
 #include <boost/test/unit_test.hpp>
 #include <boost/test/test_case_template.hpp>
+#include <sstream>
 #include "Motorcycle.h"
 #include "Car.h"
 #include "Lorry.h"
 
 BOOST_AUTO_TEST_SUITE(Vehicles)
-/*
-BOOST_AUTO_TEST_CASE(Motorcycle_Constructor){
-	Motorcycle m;
-	BOOST_CHECK(m.Accesible());
-	BOOST_CHECK_EQUAL(m.GetEngineSize(), 0);
-	BOOST_CHECK_EQUAL(m.GetNGears(), 0);
-	BOOST_CHECK_EQUAL(m.GetPower(), 0);
-	BOOST_CHECK_EQUAL(m.GetBody(), classic);
-	BOOST_CHECK(!m.IsDigitalSpeedo());
-}
 
 BOOST_AUTO_TEST_CASE(Motorcycle_Constructor_with_Values){
-	Motorcycle m(900, 5, 100, chopper, true) ;
+	Motorcycle m(0, "ADA 2311", 30, 30, 40, chopper, true);
 	BOOST_CHECK(m.Accesible());
-	BOOST_CHECK_EQUAL(m.GetEngineSize(), 900);
-	BOOST_CHECK_EQUAL(m.GetNGears(), 5);
-	BOOST_CHECK_EQUAL(m.GetPower(), 100);
+	BOOST_CHECK_EQUAL(m.GetEngineSize(), 30);
+	BOOST_CHECK_EQUAL(m.GetNGears(), 30);
+	BOOST_CHECK_EQUAL(m.GetPower(), 40);
 	BOOST_CHECK_EQUAL(m.GetBody(), chopper);
 	BOOST_CHECK(m.IsDigitalSpeedo());
 }
@@ -34,25 +25,15 @@ BOOST_AUTO_TEST_CASE(Motorcycle_Set) {
 	BOOST_CHECK(m.IsDigitalSpeedo());
 }
 
-BOOST_AUTO_TEST_CASE(Car_Constructor){
-	Car c;
-	BOOST_CHECK(c.Accesible());
-	BOOST_CHECK_EQUAL(c.GetEngineSize(), 0);
-	BOOST_CHECK_EQUAL(c.GetNGears(), 0);
-	BOOST_CHECK_EQUAL(c.GetPower(), 0);
-	BOOST_CHECK_EQUAL(c.GetBootSize(), 0);
-	BOOST_CHECK_EQUAL(c.GetNPlaces(), 5);
-	BOOST_CHECK_EQUAL(c.GetEngine(), petrol);
-}
 
 BOOST_AUTO_TEST_CASE(Car_Constructor_with_Values){
-	Car c(2000, 6, 160, 400, 5, diesel);
+	Car c(0, "adasdasda", 3000, 2, 3000, 4000, 4, diesel);
 	BOOST_CHECK(c.Accesible());
-	BOOST_CHECK_EQUAL(c.GetEngineSize(), 2000);
-	BOOST_CHECK_EQUAL(c.GetNGears(), 6);
-	BOOST_CHECK_EQUAL(c.GetPower(), 160);
-	BOOST_CHECK_EQUAL(c.GetBootSize(), 400);
-	BOOST_CHECK_EQUAL(c.GetNPlaces(), 5);
+	BOOST_CHECK_EQUAL(c.GetEngineSize(), 3000);
+	BOOST_CHECK_EQUAL(c.GetNGears(), 2);
+	BOOST_CHECK_EQUAL(c.GetPower(), 3000);
+	BOOST_CHECK_EQUAL(c.GetBootSize(), 4000);
+	BOOST_CHECK_EQUAL(c.GetNPlaces(), 4);
 	BOOST_CHECK_EQUAL(c.GetEngine(), diesel);
 }
 
@@ -66,18 +47,8 @@ BOOST_AUTO_TEST_CASE(Car_Set){
 	BOOST_CHECK_EQUAL(c.GetEngine(), hybrid);
 }
 
-BOOST_AUTO_TEST_CASE(Lorry_Constructor) {
-	Lorry l;
-	BOOST_CHECK(l.Accesible());
-	BOOST_CHECK_EQUAL(l.GetEngineSize(), 0);
-	BOOST_CHECK_EQUAL(l.GetNGears(), 0);
-	BOOST_CHECK_EQUAL(l.GetPower(), 0);
-	BOOST_CHECK_EQUAL(l.GetCapacity(), 0);
-	BOOST_CHECK(!l.CanTransportLiquids());
-}
-
 BOOST_AUTO_TEST_CASE(Lorry_Constructor_with_Values) {
-	Lorry l(3000, 6, 300, 20000, true);
+	Lorry l(0, "halabanacha", 3000, 6, 300, 20000, true);
 	BOOST_CHECK(l.Accesible());
 	BOOST_CHECK_EQUAL(l.GetEngineSize(), 3000);
 	BOOST_CHECK_EQUAL(l.GetNGears(), 6);
@@ -93,5 +64,21 @@ BOOST_AUTO_TEST_CASE(Lorry_Set) {
 	BOOST_CHECK_EQUAL(l.GetCapacity(), 30000);
 	BOOST_CHECK(l.CanTransportLiquids());
 }
-*/
+
+BOOST_AUTO_TEST_CASE(Vehicle_Saving) {
+	std::stringstream s;
+	Motorcycle m(0, "ADA 2311", 30, 30, 40, chopper, true);
+	Motorcycle mResult;
+	m.SaveVehicle(s);
+	unsigned a;
+	s.read(reinterpret_cast<char *>(&a), sizeof(unsigned int));
+	mResult.LoadVehicle(s);
+	BOOST_CHECK(mResult.Accesible());
+	BOOST_CHECK_EQUAL(mResult.GetEngineSize(), 30);
+	BOOST_CHECK_EQUAL(mResult.GetNGears(), 30);
+	BOOST_CHECK_EQUAL(mResult.GetPower(), 40);
+	BOOST_CHECK_EQUAL(mResult.GetBody(), chopper);
+	BOOST_CHECK(mResult.IsDigitalSpeedo());
+}
+
 BOOST_AUTO_TEST_SUITE_END()

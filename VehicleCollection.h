@@ -29,7 +29,7 @@ public:
 				unsigned int capacityOfLorry,
 				bool canTransportLiquid);
 	void RmVehicle(unsigned long long);
-	void ShowAllVehicles();
+	void AllVehicles();
 	void SaveData(std::ostream&);
 	void LoadData(std::istream&);
 	unsigned long long GetCounter();

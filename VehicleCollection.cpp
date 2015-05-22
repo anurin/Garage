@@ -55,7 +55,7 @@ void VehicleCollection::RmVehicle(unsigned long long a) {
 }
 
 //do zmiany
-void VehicleCollection::ShowAllVehicles() {
+void VehicleCollection::AllVehicles() {
 	std::list<Vehicle*>::iterator it;
 	std::cout << "ID" << "TYP" << "wszystko inne" << std::endl;
 	for (it = vehicles.begin(); it != vehicles.end(); it++)

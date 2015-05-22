@@ -11,7 +11,12 @@ enum vehicleType:unsigned { motorcycle, car, lorry };
 class Vehicle {
 public:
 	Vehicle(vehicleType);
-	Vehicle(vehicleType, unsigned long long, std::string, unsigned int, unsigned int, unsigned int);
+	Vehicle(vehicleType,
+		unsigned long long,
+		std::string,
+		unsigned int,
+		unsigned int,
+		unsigned int);
 
 	void Rental();
 	void Restoration();
