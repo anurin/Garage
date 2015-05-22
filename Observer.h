@@ -3,7 +3,7 @@
 
 class Observer {
 public:
-	virtual void Update();
+	virtual void Update(unsigned long long) = 0;
 };
 
 #endif

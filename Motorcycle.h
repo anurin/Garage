@@ -2,12 +2,19 @@
 #define MOTORCYCLE_H_
 #include "Vehicle.h"
 
-enum bodyType { classic, chopper, cruiser, quad };
-
 class Motorcycle : public Vehicle {
 public:
 	Motorcycle();
-	Motorcycle(unsigned int sizeOfEngine, unsigned int numberOfGears, unsigned int powerOfVehicle, bodyType typeOfBody, bool digitalsSpeedo);
+	Motorcycle(unsigned long long nIndex,
+		std::string newId,
+		unsigned int sizeOfEngine,
+		unsigned int numberOfGears, 
+		unsigned int powerOfVehicle, 
+		bodyType typeOfBody, 
+		bool digitalsSpeedo);
+
+	void SaveVehicle(std::ostream&);
+	void LoadVehicle(std::istream&);
 
 	bodyType GetBody() const;
 	bool IsDigitalSpeedo() const;

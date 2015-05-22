@@ -1,22 +1,27 @@
 #ifndef VEHICLE_H_
 #define VEHICLE_H_
 #include <list>
-#include "RentObserver.h"
-#include "CounterObserver.h"
+#include <fstream>
+#include "Observer.h"
+
+enum engineType  { diesel, petrol, hybrid, electric };
+enum bodyType  { classic, chopper, cruiser, quad };
+enum vehicleType:unsigned { motorcycle, car, lorry };
 
 class Vehicle {
 public:
-	Vehicle();
-	Vehicle(unsigned int, unsigned int, unsigned int);
+	Vehicle(vehicleType);
+	Vehicle(vehicleType, unsigned long long, std::string, unsigned int, unsigned int, unsigned int);
 
 	void AddObserver(Observer *);
 	void DelObserver(Observer *);
-	void NotifyObservers();
+	void Notify();
 
 	void Rental();
 	void Restoration();
 
-	bool Enable() const;
+	vehicleType GetType();
+	bool Accesible() const;
 	unsigned long long int GetIndex() const;
 	unsigned int GetEngineSize() const;	
 	unsigned int GetNGears() const;
@@ -25,17 +30,19 @@ public:
 	void SetEngineSize(unsigned int);
 	void SetNGears(unsigned int);
 	void SetPower(unsigned int);
+
+	virtual void SaveVehicle(std::ostream&) = 0;
+	virtual void LoadVehicle(std::istream&) = 0;
+
 protected:
+	vehicleType vType;
 	unsigned long long index;
-	bool enable;
+	std::string id;
+	bool accesible;
 	unsigned int engineSize;
 	unsigned int nGears;
 	unsigned int power;
-
-	static unsigned long long counter;
-	std::list<Observer*> observers;
+	
 };
-
-enum engineType {diesel, lead, hybrid, electric};
 
 #endif //VEHICLE_H_

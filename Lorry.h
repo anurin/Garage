@@ -5,7 +5,16 @@
 class Lorry : public Vehicle {
 public:
 	Lorry();
-	Lorry(unsigned int sizeOfEngine, unsigned int numberOfGears, unsigned int powerOfVehicle, unsigned int capacityOfLorry, bool canTransportLiquid);
+	Lorry(unsigned long long nIndex,
+		std::string newId,
+		unsigned int sizeOfEngine, 
+		unsigned int numberOfGears, 
+		unsigned int powerOfVehicle, 
+		unsigned int capacityOfLorry, 
+		bool canTransportLiquid);
+
+	void SaveVehicle(std::ostream&);
+	void LoadVehicle(std::istream&);
 
 	unsigned GetCapacity() const;
 	bool CanTransportLiquids() const;

@@ -1,42 +1,34 @@
 #include "Vehicle.h"
 
-unsigned long long Vehicle::counter = 0;
-
-Vehicle::Vehicle()
-:
-index(++counter),
-enable(true),
-engineSize(0),
-nGears(0),
-power(0)
+Vehicle::Vehicle(vehicleType v)
+:vType(v)
 {}
 
-Vehicle::Vehicle(unsigned int sizeOfEngine = 0, unsigned int numberOfGears = 0, unsigned int powerOfVehicle = 0)
-:
-index(++counter),
-enable(true),
-engineSize(sizeOfEngine),
-nGears(numberOfGears),
-power(powerOfVehicle)
+Vehicle::Vehicle(vehicleType v, unsigned long long nIndex, std::string newId, unsigned int sizeOfEngine = 0, unsigned int numberOfGears = 0, unsigned int powerOfVehicle = 0)
+	:
+	index(nIndex),
+	vType(v),
+	id(newId),
+	accesible(true),
+	engineSize(sizeOfEngine),
+	nGears(numberOfGears),
+	power(powerOfVehicle)
 {}
 
-void Vehicle::AddObserver(Observer *obs) {
-	observers.push_back(obs);
+void Vehicle::Rental() {
+	accesible = false;
 }
 
-void Vehicle::DelObserver(Observer *obs) {
-	observers.remove(obs);
+void Vehicle::Restoration() {
+	accesible = true;
 }
 
-void Vehicle::NotifyObservers(){
-	std::list<Observer*>::iterator it;
-	for (it = observers.begin(); it != observers.end(); it++){
-		(*it)->Update();
-	}
+vehicleType Vehicle::GetType() {
+	return vType;
 }
 
-bool Vehicle::Enable() const {
-	return enable;
+bool Vehicle::Accesible() const {
+	return accesible;
 }
 
 unsigned long long int Vehicle::GetIndex() const {
