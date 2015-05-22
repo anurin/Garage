@@ -1,8 +1,4 @@
-#include <iostream>
 #include "VehicleCollection.h"
-#include "Motorcycle.h"
-#include "Car.h"
-#include "Lorry.h"
 
 VehicleCollection::VehicleCollection()
 :
@@ -16,10 +12,10 @@ void VehicleCollection::RmObserver(Observer *obs) {
 	observers.remove(obs);
 }
 
-void VehicleCollection::Notify(unsigned long long a){
+void VehicleCollection::Notify(Vehicle *v){
 	std::list<Observer*>::iterator it;
 	for (it = observers.begin(); it != observers.end(); it++)
-		(*it)->Update(a);
+		(*it)->Update(v);
 }
 
 void VehicleCollection::AddVehicle(vehicleType typeOfVehicle,
@@ -58,6 +54,7 @@ void VehicleCollection::RmVehicle(unsigned long long a) {
 	}
 }
 
+//do zmiany
 void VehicleCollection::ShowAllVehicles() {
 	std::list<Vehicle*>::iterator it;
 	std::cout << "ID" << "TYP" << "wszystko inne" << std::endl;
@@ -65,20 +62,18 @@ void VehicleCollection::ShowAllVehicles() {
 		std::cout << (*it)->GetType() << " " <<  (*it)->GetPower() << std::endl;
 }
 
-void VehicleCollection::SaveData() {
-	std::ofstream saving("data.bin", std::ios::binary);
+void VehicleCollection::SaveData(std::ostream& saving) {
 	std::list<Vehicle*>::iterator it;
 	for (it = vehicles.begin(); it != vehicles.end(); it++)
 		(*it)->SaveVehicle(saving);
-	saving.close();
 }
 
-void VehicleCollection::LoadData() {
+void VehicleCollection::LoadData(std::istream& loading) {
 	std::list<Vehicle*>::iterator it;
 	for (it = vehicles.begin(); it != vehicles.end(); it++)
 		delete (*it);
 	vehicles.clear();
-	std::ifstream loading("data.bin", std::ios::binary);
+
 	vehicleType vT;
 	while (loading.read(reinterpret_cast<char *>(&vT), sizeof(unsigned int))){
 		if (vT == motorcycle) {
@@ -97,5 +92,4 @@ void VehicleCollection::LoadData() {
 			vehicles.push_back(newL);
 		}
 	}
-	loading.close();
 }

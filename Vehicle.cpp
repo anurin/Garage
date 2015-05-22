@@ -35,6 +35,10 @@ unsigned long long int Vehicle::GetIndex() const {
 	return index;
 }
 
+std::string Vehicle::GetId() const {
+	return id;
+}
+
 unsigned int Vehicle::GetEngineSize() const {
 	return engineSize;
 }

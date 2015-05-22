@@ -1,10 +1,12 @@
 #ifndef VEHICLE_COLLECTION_H_
 #define VEHICLE_COLLECTION_H_
 #include <list>
-#include <fstream>
+#include <iostream>
 #include "Vehicle.h"
-
-
+#include "Observer.h"
+#include "Motorcycle.h"
+#include "Car.h"
+#include "Lorry.h"
 
 class VehicleCollection {
 public:
@@ -12,7 +14,7 @@ public:
 
 	void AddObserver(Observer*);
 	void RmObserver(Observer*);
-	void Notify(unsigned long long);
+	void Notify(Vehicle *);
 
 	void AddVehicle(vehicleType typeOfVehicle,
 				std::string newId,
@@ -28,8 +30,8 @@ public:
 				bool canTransportLiquid);
 	void RmVehicle(unsigned long long);
 	void ShowAllVehicles();
-	void SaveData();
-	void LoadData();
+	void SaveData(std::ostream&);
+	void LoadData(std::istream&);
 	unsigned long long GetCounter();
 
 protected:
