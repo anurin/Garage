@@ -9,6 +9,7 @@
 #include "Lorry.h"
 
 class VehicleCollection {
+	friend class ConsoleInterface;
 public:
 	VehicleCollection();
 
