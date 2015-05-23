@@ -5,7 +5,7 @@
 #include "Car.h"
 #include "Lorry.h"
 
-BOOST_AUTO_TEST_SUITE(Vehicles)
+BOOST_AUTO_TEST_SUITE(Vehicles_Tests)
 
 BOOST_AUTO_TEST_CASE(Motorcycle_Constructor_with_Values){
 	Motorcycle m(0, "ADA 2311", 30, 30, 40, chopper, true);

@@ -1,4 +1,4 @@
-#include "RentObserver.h"
+	#include "RentObserver.h"
 
 RentObserver::RentObserver(int a, std::ostream& f)
 :counter(0), maxCounter(a), savingStream(f)

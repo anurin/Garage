@@ -18,8 +18,8 @@ public:
 		unsigned int,
 		unsigned int);
 
-	void Rental();
-	void Restoration();
+	void RentVehicle();
+	void RestoreVehicle();
 
 	vehicleType GetType();
 	bool Accesible() const;

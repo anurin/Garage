@@ -1,4 +1,4 @@
-#include "VehicleCollection.h"
+#include "VehiclesCollection.h"
 
 VehicleCollection::VehicleCollection()
 :
@@ -43,7 +43,7 @@ void VehicleCollection::AddVehicle(vehicleType typeOfVehicle,
 	vehicles.push_back(v);
 }
 
-void VehicleCollection::RmVehicle(unsigned long long a) {
+void VehicleCollection::RmVehicle(unsigned long long a) throw(std::string){
 	std::list<Vehicle*>::iterator it;
 	for (it = vehicles.begin(); it != vehicles.end(); it++) {
 		if ((*it)->GetIndex() == a){
@@ -52,6 +52,36 @@ void VehicleCollection::RmVehicle(unsigned long long a) {
 			break;
 		}
 	}
+	std::string s = "There is no such index.\n";
+	throw s;
+}
+
+bool VehicleCollection::Rental(unsigned long long a) throw(std::string){
+	std::list<Vehicle*>::iterator it;
+	for (it = vehicles.begin(); it != vehicles.end(); it++) {
+		if ((*it)->GetIndex() == a && (*it)->Accesible()){
+			(*it)->RentVehicle();
+			Notify(*it);
+			return true;
+		}
+	}
+	std::string s = "There is no such index or the vehicle has been already rented.\n";
+	throw s;
+	return false;
+}
+
+bool VehicleCollection::Restoration(unsigned long long a) throw(std::string){
+	std::list<Vehicle*>::iterator it;
+	for (it = vehicles.begin(); it != vehicles.end(); it++){
+		if ((*it)->GetIndex() == a && !(*it)->Accesible()){
+			(*it)->RestoreVehicle();
+			Notify(*it);
+			return true;
+		}
+	}
+	std::string s = "There is no such index or the vehicle has been already restored.\n";
+	throw s;
+	return false;
 }
 
 //do zmiany

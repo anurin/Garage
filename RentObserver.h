@@ -4,7 +4,7 @@
 #include <ostream>
 #include <istream>
 
-class RentObserver : Observer {
+class RentObserver : public Observer {
 public:
 	RentObserver(int, std::ostream&);
 	bool IsRentingPossible() const;

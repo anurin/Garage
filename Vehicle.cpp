@@ -15,11 +15,11 @@ Vehicle::Vehicle(vehicleType v, unsigned long long nIndex, std::string newId, un
 	power(powerOfVehicle)
 {}
 
-void Vehicle::Rental() {
+void Vehicle::RentVehicle() {
 	accesible = false;
 }
 
-void Vehicle::Restoration() {
+void Vehicle::RestoreVehicle() {
 	accesible = true;
 }
 
@@ -54,7 +54,6 @@ unsigned int Vehicle::GetPower() const {
 void Vehicle::SetEngineSize(unsigned int a) {
 	engineSize = a;
 }
-
 
 void Vehicle::SetNGears(unsigned int a) {
 	nGears = a;
