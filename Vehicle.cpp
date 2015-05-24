@@ -4,7 +4,12 @@ Vehicle::Vehicle(vehicleType v)
 :vType(v)
 {}
 
-Vehicle::Vehicle(vehicleType v, unsigned long long nIndex, std::string newId, unsigned int sizeOfEngine = 0, unsigned int numberOfGears = 0, unsigned int powerOfVehicle = 0)
+Vehicle::Vehicle(vehicleType v,
+	unsigned long long nIndex, 
+	std::string newId, 
+	unsigned int sizeOfEngine = 0, 
+	unsigned int numberOfGears = 0, 
+	unsigned int powerOfVehicle = 0)
 	:
 	index(nIndex),
 	vType(v),

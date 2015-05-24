@@ -9,12 +9,13 @@ public:
 
 	void MainMenu(VehicleCollection *);
 	void ShowData(VehicleCollection *);
-	void VehicleAddition(VehicleCollection *);
-	void VehicleRemoval(VehicleCollection *);
-	void VehicleRental(VehicleCollection *);
-	void VehicleRestoration(VehicleCollection *);
-	void LoadingData(VehicleCollection *);
-	void SavingData(VehicleCollection *);
+	bool VehicleAddition(VehicleCollection *);
+	bool VehicleRemoval(VehicleCollection *);
+	bool VehicleRental(VehicleCollection *);
+	bool VehicleRestoration(VehicleCollection *);
+	bool LoadingData(VehicleCollection *);
+	bool SavingData(VehicleCollection *);
+	void ClearBuf();
 protected:
 	std::vector<std::string> labels;
 };

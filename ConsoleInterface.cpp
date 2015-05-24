@@ -20,6 +20,30 @@ ConsoleInterface::ConsoleInterface() {
 	labels.push_back(s);
 	s = "Choose action:\n";
 	labels.push_back(s);
+	s = "Choose type of vehicle\n(1) Motorcycle\n(2) Car\n(3) Lorry\n";
+	labels.push_back(s);
+	s = "ID:\n";
+	labels.push_back(s);
+	s = "Engine size:\n";
+	labels.push_back(s);
+	s = "Number of gears:\n";
+	labels.push_back(s);
+	s = "Power of vehicle:\n";
+	labels.push_back(s);
+	s = "Body type:\n(1) classic\n(2) chopper\n(3) cruiser\n(4) quad\n";
+	labels.push_back(s);
+	s = "Has digital speedo? (T/N):\n";
+	labels.push_back(s);
+	s = "Boot size:\n";
+	labels.push_back(s);
+	s = "Number of places:\n";
+	labels.push_back(s);
+	s = "Engine type:\n(1) diesel\n(2) petrol\n(3) hybrid\n(4) electric\n";
+	labels.push_back(s);
+	s = "Capacity:\n";
+	labels.push_back(s);
+	s = "Can transport liquids? (T/N):\n";
+	labels.push_back(s);
 }
 
 void ConsoleInterface::MainMenu(VehicleCollection *vc) {
@@ -76,4 +100,90 @@ void ConsoleInterface::ShowData(VehicleCollection *vc) {
 			std::cout << "D";
 		std::cout << std::endl;
 	}
+}
+
+bool ConsoleInterface::VehicleAddition(VehicleCollection *vc){
+	std::cout << labels[8];
+	int nm;
+	std::cin >> nm;
+	if (std::cin.fail()){ ClearBuf(); return false; }
+
+	std::string id;
+	unsigned int sizeOfEngine;
+	unsigned int numberOfGears;
+	unsigned int powerOfVehicle;
+
+	std::cout << labels[9];
+	std::cin >> sizeOfEngine;
+	if (std::cin.fail()){ ClearBuf(); return false; }
+	std::cout << labels[10];
+	std::cin >> numberOfGears;
+	if (std::cin.fail()){ ClearBuf(); return false; }
+	std::cout << labels[11];
+	std::cin >> powerOfVehicle;
+	if (std::cin.fail()){ ClearBuf(); return false; }
+
+	switch (nm){
+	case 1:
+		bodyType typeOfBody;
+		unsigned int tempBody;
+		char tempDigitalSpeedo;
+		bool digitalSpeedo;
+		std::cout << labels[12];
+		std::cin >> tempBody;
+		if (std::cin.fail() || tempBody < 1 || tempBody > 4){ ClearBuf(); return false; }
+		typeOfBody = static_cast<bodyType>(--tempBody);
+		std::cout << labels[13];
+		std::cin >> tempDigitalSpeedo;
+		if (std::cin.fail()){ ClearBuf(); return false; }
+		if (tempDigitalSpeedo == 'T')
+			digitalSpeedo = true;
+		else if (tempDigitalSpeedo == 'N')
+			digitalSpeedo = false;
+		else
+			return false;
+		vc->AddVehicle(motorcycle, id, sizeOfEngine, numberOfGears, powerOfVehicle, typeOfBody, digitalSpeedo, 0, 0, petrol, 0, false);
+		break;
+	case 2:
+		unsigned int bootSize;
+		unsigned int nPlaces;
+		engineType engine;
+		unsigned int tempEngine;
+		std::cout << labels[14];
+		std::cin >> bootSize;
+		if (std::cin.fail()){ ClearBuf(); return false; }
+		std::cout << labels[15];
+		std::cin >> nPlaces;
+		if (std::cin.fail()){ ClearBuf(); return false; }
+		std::cout << labels[16];
+		std::cin >> tempEngine;
+		if (std::cin.fail() || tempBody < 1 || tempBody > 4){ ClearBuf(); return false; }
+		engine = static_cast<engineType>(--tempEngine);
+		vc->AddVehicle(car, id, sizeOfEngine, numberOfGears, powerOfVehicle, classic, false, bootSize, nPlaces, engine, 0, 0);
+		break;
+	case 3:
+		unsigned capacity;
+		bool liquidSubstance;
+		char tempLiquidSubstance;
+		std::cout << labels[17];
+		std::cin >> capacity;
+		if (std::cin.fail()){ ClearBuf(); return false; }
+		std::cout << labels[18];
+		std::cin >> tempLiquidSubstance;
+		if (std::cin.fail()){ ClearBuf(); return false; }
+		if (tempDigitalSpeedo == 'T')
+			liquidSubstance = true;
+		else if (tempDigitalSpeedo == 'N')
+			liquidSubstance = false;
+		else
+			return false;
+		vc->AddVehicle(lorry, id, sizeOfEngine, numberOfGears, powerOfVehicle, classic, false, 0, 0, diesel, capacity, liquidSubstance);
+		break;
+	}
+	return true;
+}
+
+void ConsoleInterface::ClearBuf() {
+	std::cin.clear();
+	std::cin.ignore(std::numeric_limits < std::streamsize >::max(), '\n');
 }
