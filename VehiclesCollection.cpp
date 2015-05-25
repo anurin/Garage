@@ -49,6 +49,7 @@ bool VehicleCollection::RmVehicle(unsigned long long a) throw(std::string){
 		if ((*it)->GetIndex() == a){
 			delete (*it);
 			vehicles.remove(*it);
+			std::cout << "The vehicle has been removed.\n";
 			return true;
 		}
 	}
@@ -58,11 +59,18 @@ bool VehicleCollection::RmVehicle(unsigned long long a) throw(std::string){
 }
 
 bool VehicleCollection::Rental(unsigned long long a) throw(std::string){
+	RentObserver* temp = static_cast<RentObserver *>(observers.front());
+	if (!temp->IsRentingPossible()){
+		std::string s = "Limit has been reached.\n";
+		throw s;
+		return false;
+	}
 	std::list<Vehicle*>::iterator it;
 	for (it = vehicles.begin(); it != vehicles.end(); it++) {
 		if ((*it)->GetIndex() == a && (*it)->Accesible()){
 			(*it)->RentVehicle();
 			Notify(*it);
+			std::cout << "The vehicle has been rented.\n";
 			return true;
 		}
 	}
@@ -77,20 +85,13 @@ bool VehicleCollection::Restoration(unsigned long long a) throw(std::string){
 		if ((*it)->GetIndex() == a && !(*it)->Accesible()){
 			(*it)->RestoreVehicle();
 			Notify(*it);
+			std::cout << "The vehicle has been restored.\n";
 			return true;
 		}
 	}
 	std::string s = "There is no such index or the vehicle has been already restored.\n";
 	throw s;
 	return false;
-}
-
-//do zmiany
-void VehicleCollection::AllVehicles() {
-	std::list<Vehicle*>::iterator it;
-	std::cout << "ID" << "TYP" << "wszystko inne" << std::endl;
-	for (it = vehicles.begin(); it != vehicles.end(); it++)
-		std::cout << (*it)->GetType() << " " <<  (*it)->GetPower() << std::endl;
 }
 
 void VehicleCollection::SaveData(std::ostream& saving) {

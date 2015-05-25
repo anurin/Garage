@@ -12,7 +12,7 @@ class ConsoleInterface{
 public:
 	ConsoleInterface();
 
-	void MainMenu(VehicleCollection *);
+	bool MainMenu(VehicleCollection *);
 	void ShowData(VehicleCollection *);
 	bool VehicleAddition(VehicleCollection *);
 	bool VehicleRemoval(VehicleCollection *);

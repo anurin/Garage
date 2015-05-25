@@ -4,6 +4,7 @@
 #include <iostream>
 #include "Vehicle.h"
 #include "Observer.h"
+#include "RentObserver.h"
 #include "Motorcycle.h"
 #include "Car.h"
 #include "Lorry.h"

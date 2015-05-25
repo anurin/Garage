@@ -19,6 +19,7 @@ liquidSubstance(canTransportLiquid)
 
 void Lorry::SaveVehicle(std::ostream &dataFile){
 	dataFile.write(reinterpret_cast<const char *>(&vType), sizeof(unsigned int));
+	dataFile.write(reinterpret_cast<const char *>(&id), sizeof(id));
 	dataFile.write(reinterpret_cast<const char *>(&index), sizeof(unsigned long long));
 	dataFile.write(reinterpret_cast<const char *>(&accesible), sizeof(bool));
 	dataFile.write(reinterpret_cast<const char *>(&engineSize), sizeof(unsigned));
@@ -29,6 +30,7 @@ void Lorry::SaveVehicle(std::ostream &dataFile){
 }
 
 void Lorry::LoadVehicle(std::istream &dataFile){
+	dataFile.read(reinterpret_cast<char *>(&id), sizeof(id));
 	dataFile.read(reinterpret_cast<char *>(&index), sizeof(unsigned long long));
 	dataFile.read(reinterpret_cast<char *>(&accesible), sizeof(bool));
 	dataFile.read(reinterpret_cast<char *>(&engineSize), sizeof(unsigned));

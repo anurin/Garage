@@ -2,7 +2,7 @@
 
 ConsoleInterface::ConsoleInterface() {
 	std::string s;
-	s = "\nGarage Management\n";	//0
+	s = "\nGarage Management\n(0) Exit\n";	//0
 	labels.push_back(s);
 	s = "(1) Show data base\n";		//1
 	labels.push_back(s);
@@ -72,18 +72,20 @@ ConsoleInterface::ConsoleInterface() {
 	labels.push_back(s);
 }
 
-void ConsoleInterface::MainMenu(VehicleCollection *vc) {
+bool ConsoleInterface::MainMenu(VehicleCollection *vc) {
 	while(true) {
 		for (int i = 0; i < 9; i++)
 			std::cout << labels[i];
 		int nm;
 		std::cin >> nm;
-		if (std::cin.fail() || nm < 1 || nm > 7){
+		if (std::cin.fail() || nm < 0 || nm > 7){
 			std::cin.clear();
 			std::cin.ignore(std::numeric_limits < std::streamsize >::max(), '\n');
 			continue;
 		}
 		switch (nm){
+			case 0:
+				return true;
 			case 1:
 				ShowData(vc);
 			   break;
@@ -110,21 +112,21 @@ void ConsoleInterface::MainMenu(VehicleCollection *vc) {
 }
 
 void ConsoleInterface::ShowData(VehicleCollection *vc) {
-	std::cout << "Index |" << "ID          |" << "Type      |" << "Accessibility   |" << std::endl;
+	std::cout << "Index |" << "ID       |" << "Type       |" << "Accessibility|" << std::endl;
 	std::list<Vehicle*>::iterator it;
 	for (it = vc->vehicles.begin(); it != vc->vehicles.end(); it++) {
 		std::cout << "(" << (*it)->GetIndex() << ")   ";
 		std::cout << std::setw(10) << (*it)->GetId() << "  ";
 		if ((*it)->GetType() == 0)
-			std::cout << "Motorcycle  ";
+			std::cout << std::setw(11) << "Motorcycle ";
 		if ((*it)->GetType() == 1)
-			std::cout << "Car  ";
+			std::cout << std::setw(11) << "Car ";
 		if ((*it)->GetType() == 2)
-			std::cout << "Lorry  ";
+			std::cout << std::setw(11) << "Lorry ";
 		if ((*it)->Accesible())
-			std::cout << "E";
+			std::cout << std::setw(13) << "E";
 		else
-			std::cout << "D";
+			std::cout << std::setw(13) << "D";
 		std::cout << std::endl;
 	}
 }
@@ -229,8 +231,6 @@ bool ConsoleInterface::VehicleRemoval(VehicleCollection *vc){
 		std::cout << s;
 		isException = true;
 	}
-	if(!isException)
-		std::cout << labels[22];
 	return true;
 }
 
@@ -248,8 +248,6 @@ bool ConsoleInterface::VehicleRental(VehicleCollection *vc){
 		std::cout << s;
 		isException = false;
 	}
-	if (!isException)
-		std::cout << labels[25];
 	return true;
 }
 
@@ -267,8 +265,6 @@ bool ConsoleInterface::VehicleRestoration(VehicleCollection *vc){
 		std::cout << s;
 		isException = true;
 	}
-	if (!isException)	
-		std::cout << labels[27];
 	return true;
 }
 
