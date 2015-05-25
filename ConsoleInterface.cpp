@@ -44,6 +44,28 @@ ConsoleInterface::ConsoleInterface() {
 	labels.push_back(s);
 	s = "Can transport liquids? (T/N):\n";
 	labels.push_back(s);
+	s = "Choose the position to remove:\n";
+	labels.push_back(s);
+	s = "Entered data is incorrect.\n";
+	labels.push_back(s);
+	s = "The position has been removed.\n";
+	labels.push_back(s);
+	s = "Choose the position to rent:\n";
+	labels.push_back(s);
+	s = "The vehicle has been rented.\n";
+	labels.push_back(s);
+	s = "Choose the position to restore:\n";
+	labels.push_back(s);
+	s = "The vehicle has been restored.n";
+	labels.push_back(s);
+	s = "Type file name to load data:\n";
+	labels.push_back(s);
+	s = "Data has been loaded.\n";
+	labels.push_back(s);
+	s = "Type file name to save data:\n";
+	labels.push_back(s);
+	s = "Error! There is no such file!\n";
+	labels.push_back(s);
 }
 
 void ConsoleInterface::MainMenu(VehicleCollection *vc) {
@@ -106,7 +128,7 @@ bool ConsoleInterface::VehicleAddition(VehicleCollection *vc){
 	std::cout << labels[8];
 	int nm;
 	std::cin >> nm;
-	if (std::cin.fail()){ ClearBuf(); return false; }
+	if (std::cin.fail()){ std::cout << labels[20]; ClearBuf(); return false; }
 
 	std::string id;
 	unsigned int sizeOfEngine;
@@ -115,13 +137,13 @@ bool ConsoleInterface::VehicleAddition(VehicleCollection *vc){
 
 	std::cout << labels[9];
 	std::cin >> sizeOfEngine;
-	if (std::cin.fail()){ ClearBuf(); return false; }
+	if (std::cin.fail()){ std::cout << labels[20]; ClearBuf(); return false; }
 	std::cout << labels[10];
 	std::cin >> numberOfGears;
-	if (std::cin.fail()){ ClearBuf(); return false; }
+	if (std::cin.fail()){ std::cout << labels[20]; ClearBuf(); return false; }
 	std::cout << labels[11];
 	std::cin >> powerOfVehicle;
-	if (std::cin.fail()){ ClearBuf(); return false; }
+	if (std::cin.fail()){ std::cout << labels[20]; ClearBuf(); return false; }
 
 	switch (nm){
 	case 1:
@@ -135,7 +157,7 @@ bool ConsoleInterface::VehicleAddition(VehicleCollection *vc){
 		typeOfBody = static_cast<bodyType>(--tempBody);
 		std::cout << labels[13];
 		std::cin >> tempDigitalSpeedo;
-		if (std::cin.fail()){ ClearBuf(); return false; }
+		if (std::cin.fail()){ std::cout << labels[20]; ClearBuf(); return false; }
 		if (tempDigitalSpeedo == 'T')
 			digitalSpeedo = true;
 		else if (tempDigitalSpeedo == 'N')
@@ -151,10 +173,10 @@ bool ConsoleInterface::VehicleAddition(VehicleCollection *vc){
 		unsigned int tempEngine;
 		std::cout << labels[14];
 		std::cin >> bootSize;
-		if (std::cin.fail()){ ClearBuf(); return false; }
+		if (std::cin.fail()){ std::cout << labels[20]; ClearBuf(); return false; }
 		std::cout << labels[15];
 		std::cin >> nPlaces;
-		if (std::cin.fail()){ ClearBuf(); return false; }
+		if (std::cin.fail()){ std::cout << labels[20]; ClearBuf(); return false; }
 		std::cout << labels[16];
 		std::cin >> tempEngine;
 		if (std::cin.fail() || tempBody < 1 || tempBody > 4){ ClearBuf(); return false; }
@@ -167,10 +189,10 @@ bool ConsoleInterface::VehicleAddition(VehicleCollection *vc){
 		char tempLiquidSubstance;
 		std::cout << labels[17];
 		std::cin >> capacity;
-		if (std::cin.fail()){ ClearBuf(); return false; }
+		if (std::cin.fail()){ std::cout << labels[20]; ClearBuf(); return false; }
 		std::cout << labels[18];
 		std::cin >> tempLiquidSubstance;
-		if (std::cin.fail()){ ClearBuf(); return false; }
+		if (std::cin.fail()){ std::cout << labels[20]; ClearBuf(); return false; }
 		if (tempDigitalSpeedo == 'T')
 			liquidSubstance = true;
 		else if (tempDigitalSpeedo == 'N')
@@ -183,7 +205,101 @@ bool ConsoleInterface::VehicleAddition(VehicleCollection *vc){
 	return true;
 }
 
+bool ConsoleInterface::VehicleRemoval(VehicleCollection *vc){
+	ShowData(vc);
+	unsigned long long nm;
+	auto isException = false;
+	std::cout << labels[19];
+	std::cin >> nm;
+	if (std::cin.fail()){ std::cout << labels[20]; ClearBuf(); return false; }
+	try{
+		vc->RmVehicle(nm);
+	}
+	catch (std::string s){
+		std::cout << s;
+		isException = true;
+	}
+	if(!isException)
+		std::cout << labels[21];
+	return true;
+}
+
+bool ConsoleInterface::VehicleRental(VehicleCollection *vc){
+	ShowData(vc);
+	unsigned long long nm;
+	auto isException = false;
+	std::cout << labels[22];
+	if (std::cin.fail()){ std::cout << labels[20]; ClearBuf(); return false; }
+	try {
+		vc->Rental(nm);
+	}
+	catch(std::string s) {
+		std::cout << s;
+		isException = false;
+	}
+	if (!isException)
+		std::cout << labels[23];
+	return true;
+}
+
+bool ConsoleInterface::VehicleRestoration(VehicleCollection *vc){
+	ShowData(vc);
+	unsigned long long nm;
+	auto isException = false;
+	std::cout << labels[24];
+	if (std::cin.fail()){ std::cout << labels[20]; ClearBuf(); return false; }
+	try {
+		vc->Restoration(nm);
+	}
+	catch (std::string s){
+		std::cout << s;
+		isException = true;
+	}
+	if (!isException)	
+		std::cout << labels[25];
+	return true;
+}
+
+bool ConsoleInterface::LoadingData(VehicleCollection *vc) {
+	std::string fileName;
+	std::cout << labels[26];
+	std::cin >> fileName;
+	if (std::cin.fail()){ std::cout << labels[20]; ClearBuf(); return false; }
+	for (unsigned i = 0; i < fileName.size(); i++){
+		if (!isalpha(fileName[i])){
+			std::cout << labels[20];
+			return false;
+		}
+	}
+	std::ifstream file(fileName, std::ios::binary);
+	if (!file.good()){ std::cout << labels[28]; return false; }
+	vc->LoadData(file);
+	std::cout << labels[27];
+	return true;
+}
+
+bool ConsoleInterface::SavingData(VehicleCollection *vc) {
+	std::string fileName;
+	std::cout << labels[26];
+	std::cin >> fileName;
+	if (std::cin.fail()){ std::cout << labels[20]; ClearBuf(); return false; }
+	for (unsigned i = 0; i < fileName.size(); i++){
+		if (!isalpha(fileName[i])){
+			std::cout << labels[20];
+			return false;
+		}
+	}
+	std::ofstream file(fileName, std::ios::binary);
+	if (!file.good()){ std::cout << labels[28]; return false; }
+	vc->SaveData(file);
+	std::cout << labels[27];
+	return true;
+}
+
+
+
 void ConsoleInterface::ClearBuf() {
 	std::cin.clear();
 	std::cin.ignore(std::numeric_limits < std::streamsize >::max(), '\n');
 }
+
