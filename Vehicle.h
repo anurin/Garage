@@ -3,6 +3,7 @@
 #include <list>
 #include <iostream>
 #include <string>
+#include <memory>
 
 enum engineType:unsigned  { diesel, petrol, hybrid, electric };
 enum bodyType:unsigned  { classic, chopper, cruiser, quad };

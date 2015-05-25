@@ -1,9 +1,11 @@
 #include <iostream>
 #include <fstream>
+#include <sstream>
 #include <string>
 #include <vector>
 #include <cctype>
 #include "VehiclesCollection.h"
+
 
 class ConsoleInterface{
 public:
