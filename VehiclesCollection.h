@@ -29,7 +29,7 @@ public:
 				engineType typeOfEngine,
 				unsigned int capacityOfLorry,
 				bool canTransportLiquid);
-	void RmVehicle(unsigned long long) throw(std::string);
+	bool RmVehicle(unsigned long long) throw(std::string);
 	bool Rental(unsigned long long) throw(std::string);
 	bool Restoration(unsigned long long) throw(std::string);
 	void AllVehicles();

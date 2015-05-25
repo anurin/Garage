@@ -43,17 +43,18 @@ void VehicleCollection::AddVehicle(vehicleType typeOfVehicle,
 	vehicles.push_back(v);
 }
 
-void VehicleCollection::RmVehicle(unsigned long long a) throw(std::string){
+bool VehicleCollection::RmVehicle(unsigned long long a) throw(std::string){
 	std::list<Vehicle*>::iterator it;
 	for (it = vehicles.begin(); it != vehicles.end(); it++) {
 		if ((*it)->GetIndex() == a){
 			delete (*it);
 			vehicles.remove(*it);
-			break;
+			return true;
 		}
 	}
 	std::string s = "There is no such index.\n";
 	throw s;
+	return false;
 }
 
 bool VehicleCollection::Rental(unsigned long long a) throw(std::string){
