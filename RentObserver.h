@@ -7,6 +7,7 @@
 class RentObserver : public Observer {
 public:
 	RentObserver(int, std::ostream&);
+	~RentObserver();
 	bool IsRentingPossible() const;
 	void Update(Vehicle *);
 protected:
