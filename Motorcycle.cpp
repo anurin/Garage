@@ -18,8 +18,12 @@ digitalSpeedometer(digitalsSpeedo)
 {}
 
 void Motorcycle::SaveVehicle(std::ostream &dataFile){
+	char temp[9] = "";
+	std::stringstream ss;
+	ss << id;
+	ss >> temp;
 	dataFile.write(reinterpret_cast<const char *>(&vType), sizeof(unsigned int));
-	dataFile.write(reinterpret_cast<const char *>(&id), sizeof(id));
+	dataFile.write(reinterpret_cast<const char *>(&temp), sizeof(temp));
 	dataFile.write(reinterpret_cast<const char *>(&index), sizeof(unsigned long long));
 	dataFile.write(reinterpret_cast<const char *>(&accesible), sizeof(bool));
 	dataFile.write(reinterpret_cast<const char *>(&engineSize), sizeof(unsigned));
@@ -30,7 +34,8 @@ void Motorcycle::SaveVehicle(std::ostream &dataFile){
 }
 
 void Motorcycle::LoadVehicle(std::istream &dataFile){
-	dataFile.read(reinterpret_cast<char *>(&id), sizeof(id));
+	char temp[9];
+	dataFile.read(reinterpret_cast<char *>(&temp), sizeof(temp));
 	dataFile.read(reinterpret_cast<char *>(&index), sizeof(unsigned long long));
 	dataFile.read(reinterpret_cast<char *>(&accesible), sizeof(bool));
 	dataFile.read(reinterpret_cast<char *>(&engineSize), sizeof(unsigned));
@@ -38,6 +43,9 @@ void Motorcycle::LoadVehicle(std::istream &dataFile){
 	dataFile.read(reinterpret_cast<char *>(&power), sizeof(unsigned));
 	dataFile.read(reinterpret_cast<char *>(&body), sizeof(unsigned));
 	dataFile.read(reinterpret_cast<char *>(&digitalSpeedometer), sizeof(bool));
+	std::stringstream ss;
+	ss << temp;
+	ss >> id;
 }
 
 bodyType Motorcycle::GetBody() const {

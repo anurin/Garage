@@ -4,6 +4,7 @@
 #include <iostream>
 #include <string>
 #include <memory>
+#include <sstream>
 
 enum engineType:unsigned  { diesel, petrol, hybrid, electric };
 enum bodyType:unsigned  { classic, chopper, cruiser, quad };
