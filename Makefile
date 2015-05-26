@@ -8,17 +8,16 @@ lib_SOURCES = \
 	Car.cpp \
 	Lorry.cpp \
 	Motorcycle.cpp \
-	Observer.cpp \
 	RentObserver.cpp \
 	VehiclesCollection.cpp \
-	ConsoleInterface.cpp \
+	ConsoleInterface.cpp 
 
 lib_OBJECTS=$(lib_SOURCES:.cpp=.o)
 
 tests_SOURCES = \
 	tests_main.cpp \
 	ObserverTests.cpp \
-	VehiclesTests.cpp \
+	VehiclesTests.cpp 
 
 tests_OBJECTS=$(tests_SOURCES:.cpp=.o)
 
