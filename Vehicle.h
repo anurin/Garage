@@ -18,6 +18,7 @@ public:
 		unsigned int sizeOfEngine,
 		unsigned int numberOfGears,
 		unsigned int powerOfVehicle);
+	virtual ~Vehicle();
 
 	void RentVehicle();
 	void RestoreVehicle();

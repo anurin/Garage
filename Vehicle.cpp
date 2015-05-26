@@ -20,6 +20,8 @@ Vehicle::Vehicle(vehicleType v,
 	power(powerOfVehicle)
 {}
 
+Vehicle::~Vehicle(){}
+
 void Vehicle::RentVehicle() {
 	accesible = false;
 }
