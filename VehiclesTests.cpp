@@ -77,8 +77,8 @@ BOOST_AUTO_TEST_CASE(Motorcycle_Loading) {
 	Motorcycle m(0, "ADA2311", 30, 30, 40, chopper, true);
 	Motorcycle mResult;
 	m.SaveVehicle(s);
-	unsigned int a;
-	s.read(reinterpret_cast<char *>(&a), sizeof(unsigned int));
+	unsigned a;
+	s.read(reinterpret_cast<char *>(&a), sizeof(unsigned));
 	mResult.LoadVehicle(s);
 	BOOST_CHECK_EQUAL(a, 0);
 	BOOST_CHECK(mResult.Accesible());
@@ -101,17 +101,17 @@ BOOST_AUTO_TEST_CASE(Car_Loading) {
 	Car m(0, "ADA2311", 30, 30, 40, 30, 30, diesel);
 	Car mResult;
 	m.SaveVehicle(s);
-	unsigned int a;
-	s.read(reinterpret_cast<char *>(&a), sizeof(unsigned int));
+	unsigned a;
+	s.read(reinterpret_cast<char *>(&a), sizeof(unsigned));
 	mResult.LoadVehicle(s);
-	BOOST_CHECK_EQUAL(a, 0);
+	BOOST_CHECK_EQUAL(a, 1);
 	BOOST_CHECK(mResult.Accesible());
 	BOOST_CHECK_EQUAL(mResult.GetId(), "ADA2311");
 	BOOST_CHECK_EQUAL(mResult.GetEngineSize(), 30);
 	BOOST_CHECK_EQUAL(mResult.GetNGears(), 30);
 	BOOST_CHECK_EQUAL(mResult.GetPower(), 40);
 	BOOST_CHECK_EQUAL(mResult.GetBootSize(), 30);
-	BOOST_CHECK_EQUAL(mResult.GetType(), 0);
+	BOOST_CHECK_EQUAL(mResult.GetType(), diesel);
 }
 
 BOOST_AUTO_TEST_CASE(Lorry_Saving) {
@@ -125,10 +125,10 @@ BOOST_AUTO_TEST_CASE(Lorry_Loading) {
 	Lorry m(0, "ADA2311", 30, 30, 40, 30, true);
 	Lorry mResult;
 	m.SaveVehicle(s);
-	unsigned int a;
-	s.read(reinterpret_cast<char *>(&a), sizeof(unsigned int));
+	unsigned a;
+	s.read(reinterpret_cast<char *>(&a), sizeof(unsigned));
 	mResult.LoadVehicle(s);
-	BOOST_CHECK_EQUAL(a, 0);
+	BOOST_CHECK_EQUAL(a, 2);
 	BOOST_CHECK(mResult.Accesible());
 	BOOST_CHECK_EQUAL(mResult.GetId(), "ADA2311");
 	BOOST_CHECK_EQUAL(mResult.GetEngineSize(), 30);

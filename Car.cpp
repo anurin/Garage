@@ -24,7 +24,7 @@ void Car::SaveVehicle(std::ostream &dataFile){
 	std::stringstream ss;
 	ss << id;
 	ss >> temp;
-	dataFile.write(reinterpret_cast<const char *>(&vType), sizeof(unsigned int));
+	dataFile.write(reinterpret_cast<const char *>(&vType), sizeof(unsigned));
 	dataFile.write(reinterpret_cast<const char *>(&index), sizeof(unsigned long long));
 	dataFile.write(reinterpret_cast<const char *>(&temp), sizeof(temp));
 	dataFile.write(reinterpret_cast<const char *>(&accesible), sizeof(bool));
