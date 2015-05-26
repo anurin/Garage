@@ -135,7 +135,7 @@ bool ConsoleInterface::VehicleAddition(VehicleCollection *vc){
 	std::cout << labels[9];
 	int nm;
 	std::cin >> nm;
-	if (std::cin.fail() || nm > 4 || nm < 1){ std::cout << labels[22]; ClearBuf(); return false; }
+	if (std::cin.fail() || nm > 4 || nm < 1){ std::cerr<< labels[22]; ClearBuf(); return false; }
 
 	std::string id;
 	unsigned int sizeOfEngine;
@@ -148,13 +148,13 @@ bool ConsoleInterface::VehicleAddition(VehicleCollection *vc){
 	ClearBuf();
 	std::cout << labels[11];
 	std::cin >> sizeOfEngine;
-	if (std::cin.fail()){ std::cout << labels[22]; ClearBuf(); return false; }
+	if (std::cin.fail()){ std::cerr<< labels[22]; ClearBuf(); return false; }
 	std::cout << labels[12];
 	std::cin >> numberOfGears;
-	if (std::cin.fail()){ std::cout << labels[22]; ClearBuf(); return false; }
+	if (std::cin.fail()){ std::cerr<< labels[22]; ClearBuf(); return false; }
 	std::cout << labels[13];
 	std::cin >> powerOfVehicle;
-	if (std::cin.fail()){ std::cout << labels[22]; ClearBuf(); return false; }
+	if (std::cin.fail()){ std::cerr<< labels[22]; ClearBuf(); return false; }
 
 	switch (nm){
 	case 1:
@@ -168,7 +168,7 @@ bool ConsoleInterface::VehicleAddition(VehicleCollection *vc){
 		typeOfBody = static_cast<bodyType>(--tempBody);
 		std::cout << labels[15];
 		std::cin >> tempDigitalSpeedo;
-		if (std::cin.fail()){ std::cout << labels[22]; ClearBuf(); return false; }
+		if (std::cin.fail()){ std::cerr<< labels[22]; ClearBuf(); return false; }
 		if (tempDigitalSpeedo == 'y')
 			digitalSpeedo = true;
 		else if (tempDigitalSpeedo == 'n')
@@ -184,13 +184,13 @@ bool ConsoleInterface::VehicleAddition(VehicleCollection *vc){
 		unsigned int tempEngine;
 		std::cout << labels[16];
 		std::cin >> bootSize;
-		if (std::cin.fail()){ std::cout << labels[22]; ClearBuf(); return false; }
+		if (std::cin.fail()){ std::cerr<< labels[22]; ClearBuf(); return false; }
 		std::cout << labels[17];
 		std::cin >> nPlaces;
-		if (std::cin.fail()){ std::cout << labels[22]; ClearBuf(); return false; }
+		if (std::cin.fail()){ std::cerr<< labels[22]; ClearBuf(); return false; }
 		std::cout << labels[18];
 		std::cin >> tempEngine;
-		if (std::cin.fail() || tempEngine < 1 || tempEngine > 4){ std::cout << labels[22]; ClearBuf(); return false; }
+		if (std::cin.fail() || tempEngine < 1 || tempEngine > 4){ std::cerr<< labels[22]; ClearBuf(); return false; }
 		engine = static_cast<engineType>(--tempEngine);
 		vc->AddVehicle(car, id, sizeOfEngine, numberOfGears, powerOfVehicle, classic, false, bootSize, nPlaces, engine, 0, false);
 		break;
@@ -200,10 +200,10 @@ bool ConsoleInterface::VehicleAddition(VehicleCollection *vc){
 		char tempLiquidSubstance;
 		std::cout << labels[19];
 		std::cin >> capacity;
-		if (std::cin.fail()){ std::cout << labels[22]; ClearBuf(); return false; }
+		if (std::cin.fail()){ std::cerr<< labels[22]; ClearBuf(); return false; }
 		std::cout << labels[20];
 		std::cin >> tempLiquidSubstance;
-		if (std::cin.fail()){ std::cout << labels[22]; ClearBuf(); return false; }
+		if (std::cin.fail()){ std::cerr<< labels[22]; ClearBuf(); return false; }
 		if (tempDigitalSpeedo == 'y')
 			liquidSubstance = true;
 		else if (tempDigitalSpeedo == 'n')
@@ -220,16 +220,14 @@ bool ConsoleInterface::VehicleAddition(VehicleCollection *vc){
 bool ConsoleInterface::VehicleRemoval(VehicleCollection *vc){
 	ShowData(vc);
 	unsigned long long nm;
-	auto isException = false;
 	std::cout << labels[21];
 	std::cin >> nm;
-	if (std::cin.fail()){ std::cout << labels[22]; ClearBuf(); return false; }
+	if (std::cin.fail()){ std::cerr<< labels[22]; ClearBuf(); return false; }
 	try{
 		vc->RmVehicle(nm);
 	}
 	catch (std::string s){
-		std::cout << s;
-		isException = true;
+		std::cerr << s;
 	}
 	return true;
 }
@@ -237,16 +235,14 @@ bool ConsoleInterface::VehicleRemoval(VehicleCollection *vc){
 bool ConsoleInterface::VehicleRental(VehicleCollection *vc){
 	ShowData(vc);
 	unsigned long long nm;
-	auto isException = false;
 	std::cout << labels[24];
 	std::cin >> nm;
-	if (std::cin.fail()){ std::cout << labels[22]; ClearBuf(); return false; }
+	if (std::cin.fail()){ std::cerr<< labels[22]; ClearBuf(); return false; }
 	try {
 		vc->Rental(nm);
 	}
 	catch(std::string s) {
-		std::cout << s;
-		isException = false;
+		std::cerr << s;
 	}
 	return true;
 }
@@ -254,16 +250,14 @@ bool ConsoleInterface::VehicleRental(VehicleCollection *vc){
 bool ConsoleInterface::VehicleRestoration(VehicleCollection *vc){
 	ShowData(vc);
 	unsigned long long nm;
-	auto isException = false;
 	std::cout << labels[26];
 	std::cin >> nm;
-	if (std::cin.fail()){ std::cout << labels[22]; ClearBuf(); return false; }
+	if (std::cin.fail()){ std::cerr<< labels[22]; ClearBuf(); return false; }
 	try {
 		vc->Restoration(nm);
 	}
 	catch (std::string s){
-		std::cout << s;
-		isException = true;
+		std::cerr << s;
 	}
 	return true;
 }
@@ -272,7 +266,7 @@ bool ConsoleInterface::LoadingData(VehicleCollection *vc) {
 	std::string fileName;
 	std::cout << labels[28];
 	std::cin >> fileName;
-	if (std::cin.fail()){ std::cout << labels[22]; ClearBuf(); return false; }
+	if (std::cin.fail()){ std::cerr<< labels[22]; ClearBuf(); return false; }
 	for (unsigned i = 0; i < fileName.size(); i++){
 		if (!isalpha(fileName[i])){
 			std::cout << labels[22];
@@ -280,7 +274,7 @@ bool ConsoleInterface::LoadingData(VehicleCollection *vc) {
 		}
 	}
 	std::ifstream file(fileName, std::ios::binary);
-	if (!file.good()){ std::cout << labels[32]; return false; }
+	if (!file.good()){ std::cerr << labels[32]; return false; }
 	vc->LoadData(file);
 	std::cout << labels[29];
 	return true;
@@ -290,15 +284,15 @@ bool ConsoleInterface::SavingData(VehicleCollection *vc) {
 	std::string fileName;
 	std::cout << labels[30];
 	std::cin >> fileName;
-	if (std::cin.fail()){ std::cout << labels[22]; ClearBuf(); return false; }
+	if (std::cin.fail()){ std::cerr<< labels[22]; ClearBuf(); return false; }
 	for (unsigned i = 0; i < fileName.size(); i++){
 		if (!isalpha(fileName[i])){
-			std::cout << labels[22];
+			std::cerr << labels[22];
 			return false;
 		}
 	}
 	std::ofstream file(fileName, std::ios::binary);
-	if (!file.good()){ std::cout << labels[32]; return false; }
+	if (!file.good()){ std::cerr << labels[32]; return false; }
 	vc->SaveData(file);
 	std::cout << labels[31];
 	return true;
