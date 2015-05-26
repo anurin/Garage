@@ -32,7 +32,7 @@ ConsoleInterface::ConsoleInterface() {
 	labels.push_back(s);
 	s = "Body type:\n(1) classic\n(2) chopper\n(3) cruiser\n(4) quad\n";	//14
 	labels.push_back(s);
-	s = "Has digital speedo? (y/n):\n";		//15
+	s = "Has digital speedometer? (y/n):\n";		//15
 	labels.push_back(s);
 	s = "Boot size:\n";				//16
 	labels.push_back(s);
