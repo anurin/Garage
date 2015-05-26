@@ -55,7 +55,8 @@ bool VehiclesCollection::RmVehicle(unsigned long long a) throw(std::string){
 		if ((*it)->GetIndex() == a){
 			delete (*it);
 			vehicles.remove(*it);
-			std::cout << "The vehicle has been removed.\n";
+			std::string s = "The vehicle has been removed.\n";
+			throw s;
 			return true;
 		}
 	}
@@ -76,7 +77,8 @@ bool VehiclesCollection::Rental(unsigned long long a) throw(std::string){
 		if ((*it)->GetIndex() == a && (*it)->Accesible()){
 			(*it)->RentVehicle();
 			Notify(*it);
-			std::cout << "The vehicle has been rented.\n";
+			std::string s = "The vehicle has been rented.\n";
+			throw s;
 			return true;
 		}
 	}
@@ -91,7 +93,8 @@ bool VehiclesCollection::Restoration(unsigned long long a) throw(std::string){
 		if ((*it)->GetIndex() == a && !(*it)->Accesible()){
 			(*it)->RestoreVehicle();
 			Notify(*it);
-			std::cout << "The vehicle has been restored.\n";
+			std::string s = "The vehicle has been restored.\n";
+			throw s;
 			return true;
 		}
 	}

@@ -111,7 +111,7 @@ BOOST_AUTO_TEST_CASE(Car_Loading) {
 	BOOST_CHECK_EQUAL(mResult.GetNGears(), 30);
 	BOOST_CHECK_EQUAL(mResult.GetPower(), 40);
 	BOOST_CHECK_EQUAL(mResult.GetBootSize(), 30);
-	BOOST_CHECK_EQUAL(mResult.GetType(), diesel);
+	BOOST_CHECK_EQUAL(mResult.GetEngine(), diesel);
 }
 
 BOOST_AUTO_TEST_CASE(Lorry_Saving) {
