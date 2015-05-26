@@ -80,7 +80,7 @@ bool ConsoleInterface::MainMenu(VehicleCollection *vc) {
 		std::cin >> nm;
 		if (std::cin.fail() || nm < 0 || nm > 7){
 			std::cin.clear();
-			std::cin.ignore(std::numeric_limits < std::streamsize >::max(), '\n');
+			std::cin.ignore(1000, '\n');
 			continue;
 		}
 		switch (nm){
@@ -302,6 +302,6 @@ bool ConsoleInterface::SavingData(VehicleCollection *vc) {
 
 void ConsoleInterface::ClearBuf() {
 	std::cin.clear();
-	std::cin.ignore(std::numeric_limits < std::streamsize >::max(), '\n');
+	std::cin.ignore(1000, '\n');
 }
 
