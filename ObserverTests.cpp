@@ -7,7 +7,7 @@
 BOOST_AUTO_TEST_SUITE(Observer_Tests)
 
 BOOST_AUTO_TEST_CASE(RentObserver_Saving_Data){
-	VehicleCollection vc;
+	VehiclesCollection vc;
 	vc.AddVehicle(motorcycle, "ADA 2311", 30, 30, 40, chopper, true, 0, 0, diesel, 0, true);
 	std::stringstream s;
 	RentObserver *r = new RentObserver(3, s);

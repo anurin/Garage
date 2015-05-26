@@ -72,7 +72,7 @@ ConsoleInterface::ConsoleInterface() {
 	labels.push_back(s);
 }
 
-bool ConsoleInterface::MainMenu(VehicleCollection *vc) {
+bool ConsoleInterface::MainMenu(VehiclesCollection *vc) {
 	while(true) {
 		for (int i = 0; i < 9; i++)
 			std::cout << labels[i];
@@ -111,7 +111,7 @@ bool ConsoleInterface::MainMenu(VehicleCollection *vc) {
 	}
 }
 
-void ConsoleInterface::ShowData(VehicleCollection *vc) {
+void ConsoleInterface::ShowData(VehiclesCollection *vc) {
 	std::cout << "Index |" << "ID       |" << "Type       |" << "Accessibility|" << std::endl;
 	std::list<Vehicle*>::iterator it;
 	for (it = vc->vehicles.begin(); it != vc->vehicles.end(); it++) {
@@ -131,7 +131,7 @@ void ConsoleInterface::ShowData(VehicleCollection *vc) {
 	}
 }
 
-bool ConsoleInterface::VehicleAddition(VehicleCollection *vc){
+bool ConsoleInterface::VehicleAddition(VehiclesCollection *vc){
 	std::cout << labels[9];
 	int nm;
 	std::cin >> nm;
@@ -217,7 +217,7 @@ bool ConsoleInterface::VehicleAddition(VehicleCollection *vc){
 	return true;
 }
 
-bool ConsoleInterface::VehicleRemoval(VehicleCollection *vc){
+bool ConsoleInterface::VehicleRemoval(VehiclesCollection *vc){
 	ShowData(vc);
 	unsigned long long nm;
 	std::cout << labels[21];
@@ -232,7 +232,7 @@ bool ConsoleInterface::VehicleRemoval(VehicleCollection *vc){
 	return true;
 }
 
-bool ConsoleInterface::VehicleRental(VehicleCollection *vc){
+bool ConsoleInterface::VehicleRental(VehiclesCollection *vc){
 	ShowData(vc);
 	unsigned long long nm;
 	std::cout << labels[24];
@@ -247,7 +247,7 @@ bool ConsoleInterface::VehicleRental(VehicleCollection *vc){
 	return true;
 }
 
-bool ConsoleInterface::VehicleRestoration(VehicleCollection *vc){
+bool ConsoleInterface::VehicleRestoration(VehiclesCollection *vc){
 	ShowData(vc);
 	unsigned long long nm;
 	std::cout << labels[26];
@@ -262,7 +262,7 @@ bool ConsoleInterface::VehicleRestoration(VehicleCollection *vc){
 	return true;
 }
 
-bool ConsoleInterface::LoadingData(VehicleCollection *vc) {
+bool ConsoleInterface::LoadingData(VehiclesCollection *vc) {
 	std::string fileName;
 	std::cout << labels[28];
 	std::cin >> fileName;
@@ -280,7 +280,7 @@ bool ConsoleInterface::LoadingData(VehicleCollection *vc) {
 	return true;
 }
 
-bool ConsoleInterface::SavingData(VehicleCollection *vc) {
+bool ConsoleInterface::SavingData(VehiclesCollection *vc) {
 	std::string fileName;
 	std::cout << labels[30];
 	std::cin >> fileName;

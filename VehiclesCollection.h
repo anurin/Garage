@@ -9,10 +9,11 @@
 #include "Car.h"
 #include "Lorry.h"
 
-class VehicleCollection {
+class VehiclesCollection {
 	friend class ConsoleInterface;
 public:
-	VehicleCollection();
+	VehiclesCollection();
+	~VehiclesCollection();
 
 	void AddObserver(Observer*);
 	void RmObserver(Observer*);

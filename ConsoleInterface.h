@@ -12,14 +12,14 @@ class ConsoleInterface{
 public:
 	ConsoleInterface();
 
-	bool MainMenu(VehicleCollection *);
-	void ShowData(VehicleCollection *);
-	bool VehicleAddition(VehicleCollection *);
-	bool VehicleRemoval(VehicleCollection *);
-	bool VehicleRental(VehicleCollection *);
-	bool VehicleRestoration(VehicleCollection *);
-	bool LoadingData(VehicleCollection *);
-	bool SavingData(VehicleCollection *);
+	bool MainMenu(VehiclesCollection *);
+	void ShowData(VehiclesCollection *);
+	bool VehicleAddition(VehiclesCollection *);
+	bool VehicleRemoval(VehiclesCollection *);
+	bool VehicleRental(VehiclesCollection *);
+	bool VehicleRestoration(VehiclesCollection *);
+	bool LoadingData(VehiclesCollection *);
+	bool SavingData(VehiclesCollection *);
 	void ClearBuf();
 protected:
 	std::vector<std::string> labels;

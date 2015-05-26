@@ -1,24 +1,30 @@
 #include "VehiclesCollection.h"
 
-VehicleCollection::VehicleCollection()
+VehiclesCollection::VehiclesCollection()
 :
 counter(0){}
 
-void VehicleCollection::AddObserver(Observer *obs) {
+VehiclesCollection::~VehiclesCollection() {
+	std::list<Vehicle *>::iterator it;
+	for (it = vehicles.begin(); it != vehicles.end(); it++)
+		delete (*it);
+}
+
+void VehiclesCollection::AddObserver(Observer *obs) {
 	observers.push_back(obs);
 }
 
-void VehicleCollection::RmObserver(Observer *obs) {
+void VehiclesCollection::RmObserver(Observer *obs) {
 	observers.remove(obs);
 }
 
-void VehicleCollection::Notify(Vehicle *v){
+void VehiclesCollection::Notify(Vehicle *v){
 	std::list<Observer*>::iterator it;
 	for (it = observers.begin(); it != observers.end(); it++)
 		(*it)->Update(v);
 }
 
-void VehicleCollection::AddVehicle(vehicleType typeOfVehicle,
+void VehiclesCollection::AddVehicle(vehicleType typeOfVehicle,
 							std::string newId,
 							unsigned int sizeOfEngine,
 							unsigned int numberOfGears,
@@ -43,7 +49,7 @@ void VehicleCollection::AddVehicle(vehicleType typeOfVehicle,
 	vehicles.push_back(v);
 }
 
-bool VehicleCollection::RmVehicle(unsigned long long a) throw(std::string){
+bool VehiclesCollection::RmVehicle(unsigned long long a) throw(std::string){
 	std::list<Vehicle*>::iterator it;
 	for (it = vehicles.begin(); it != vehicles.end(); it++) {
 		if ((*it)->GetIndex() == a){
@@ -58,7 +64,7 @@ bool VehicleCollection::RmVehicle(unsigned long long a) throw(std::string){
 	return false;
 }
 
-bool VehicleCollection::Rental(unsigned long long a) throw(std::string){
+bool VehiclesCollection::Rental(unsigned long long a) throw(std::string){
 	RentObserver* temp = static_cast<RentObserver *>(observers.front());
 	if (!temp->IsRentingPossible()){
 		std::string s = "Limit has been reached.\n";
@@ -79,7 +85,7 @@ bool VehicleCollection::Rental(unsigned long long a) throw(std::string){
 	return false;
 }
 
-bool VehicleCollection::Restoration(unsigned long long a) throw(std::string){
+bool VehiclesCollection::Restoration(unsigned long long a) throw(std::string){
 	std::list<Vehicle*>::iterator it;
 	for (it = vehicles.begin(); it != vehicles.end(); it++){
 		if ((*it)->GetIndex() == a && !(*it)->Accesible()){
@@ -94,13 +100,13 @@ bool VehicleCollection::Restoration(unsigned long long a) throw(std::string){
 	return false;
 }
 
-void VehicleCollection::SaveData(std::ostream& saving) {
+void VehiclesCollection::SaveData(std::ostream& saving) {
 	std::list<Vehicle*>::iterator it;
 	for (it = vehicles.begin(); it != vehicles.end(); it++)
 		(*it)->SaveVehicle(saving);
 }
 
-void VehicleCollection::LoadData(std::istream& loading) {
+void VehiclesCollection::LoadData(std::istream& loading) {
 	std::list<Vehicle*>::iterator it;
 	for (it = vehicles.begin(); it != vehicles.end(); it++)
 		delete (*it);

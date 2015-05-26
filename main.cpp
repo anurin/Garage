@@ -4,7 +4,7 @@
 int main() {
 	std::ofstream observerFile("observer.txt", std::ios::app);
 	RentObserver observer(5, observerFile);
-	VehicleCollection vc;
+	VehiclesCollection vc;
 	vc.AddObserver(&observer);
 	ConsoleInterface i;
 	i.MainMenu(&vc);
