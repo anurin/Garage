@@ -23,8 +23,8 @@ void Lorry::SaveVehicle(std::ostream &dataFile){
 	ss << id;
 	ss >> temp;
 	dataFile.write(reinterpret_cast<const char *>(&vType), sizeof(unsigned int));
-	dataFile.write(reinterpret_cast<const char *>(&temp), sizeof(temp));
 	dataFile.write(reinterpret_cast<const char *>(&index), sizeof(unsigned long long));
+	dataFile.write(reinterpret_cast<const char *>(&temp), sizeof(temp));
 	dataFile.write(reinterpret_cast<const char *>(&accesible), sizeof(bool));
 	dataFile.write(reinterpret_cast<const char *>(&engineSize), sizeof(unsigned));
 	dataFile.write(reinterpret_cast<const char *>(&nGears), sizeof(unsigned));
@@ -35,8 +35,8 @@ void Lorry::SaveVehicle(std::ostream &dataFile){
 
 void Lorry::LoadVehicle(std::istream &dataFile){
 	char temp[9];
-	dataFile.read(reinterpret_cast<char *>(&temp), sizeof(temp));
 	dataFile.read(reinterpret_cast<char *>(&index), sizeof(unsigned long long));
+	dataFile.read(reinterpret_cast<char *>(&temp), sizeof(temp));
 	dataFile.read(reinterpret_cast<char *>(&accesible), sizeof(bool));
 	dataFile.read(reinterpret_cast<char *>(&engineSize), sizeof(unsigned));
 	dataFile.read(reinterpret_cast<char *>(&nGears), sizeof(unsigned));
