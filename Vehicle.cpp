@@ -11,8 +11,8 @@ Vehicle::Vehicle(vehicleType v,
 	unsigned int numberOfGears = 0, 
 	unsigned int powerOfVehicle = 0)
 	:
-	index(nIndex),
 	vType(v),
+	index(nIndex),
 	id(newId),
 	accesible(true),
 	engineSize(sizeOfEngine),
