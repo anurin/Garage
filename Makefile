@@ -28,7 +28,7 @@ app_OBJECTS=$(app_SOURCES:.cpp=.o)
 
 tests_EXECUTABLE = tests_bin
 
-all: tests
+all: garage tests
 
 %.o : %.c
 	$(CXX) -c $(CPPFLAGS) $< -o $@

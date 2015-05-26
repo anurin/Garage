@@ -64,7 +64,7 @@ BOOST_AUTO_TEST_CASE(Lorry_Set) {
 	BOOST_CHECK_EQUAL(l.GetCapacity(), 30000);
 	BOOST_CHECK(l.CanTransportLiquids());
 }
-
+/*
 BOOST_AUTO_TEST_CASE(Vehicle_Saving) {
 	std::stringstream s;
 	Motorcycle m(0, "ADA 2311", 30, 30, 40, chopper, true);
@@ -80,5 +80,5 @@ BOOST_AUTO_TEST_CASE(Vehicle_Saving) {
 	BOOST_CHECK_EQUAL(mResult.GetBody(), chopper);
 	BOOST_CHECK(mResult.IsDigitalSpeedo());
 }
-
+*/
 BOOST_AUTO_TEST_SUITE_END()
