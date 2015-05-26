@@ -224,7 +224,9 @@ bool ConsoleInterface::VehicleRemoval(VehiclesCollection *vc){
 	std::cin >> nm;
 	if (std::cin.fail()){ std::cerr<< labels[22]; ClearBuf(); return false; }
 	try{
-		vc->RmVehicle(nm);
+		bool b = vc->RmVehicle(nm);
+		if (b)
+			std::cout << labels[23];
 	}
 	catch (std::string s){
 		std::cerr << s;
@@ -239,7 +241,9 @@ bool ConsoleInterface::VehicleRental(VehiclesCollection *vc){
 	std::cin >> nm;
 	if (std::cin.fail()){ std::cerr<< labels[22]; ClearBuf(); return false; }
 	try {
-		vc->Rental(nm);
+		bool b = vc->Rental(nm);
+		if (b)
+			std::cout << labels[25];
 	}
 	catch(std::string s) {
 		std::cerr << s;
@@ -254,7 +258,9 @@ bool ConsoleInterface::VehicleRestoration(VehiclesCollection *vc){
 	std::cin >> nm;
 	if (std::cin.fail()){ std::cerr<< labels[22]; ClearBuf(); return false; }
 	try {
-		vc->Restoration(nm);
+		bool b = vc->Restoration(nm);
+		if (b)
+			std::cout << labels[27];
 	}
 	catch (std::string s){
 		std::cerr << s;
