@@ -10,7 +10,6 @@
 #include "Lorry.h"
 
 class VehiclesCollection {
-	friend class ConsoleInterface;
 public:
 	VehiclesCollection();
 	~VehiclesCollection();
@@ -38,6 +37,7 @@ public:
 	void SaveData(std::ostream&);
 	void LoadData(std::istream&);
 	unsigned long long GetCounter();
+	std::list<Vehicle*> GetVehicles();
 
 protected:
 	unsigned long long counter;

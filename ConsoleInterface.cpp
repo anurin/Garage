@@ -87,7 +87,7 @@ bool ConsoleInterface::MainMenu(VehiclesCollection *vc) {
 			case 0:
 				return true;
 			case 1:
-				ShowData(vc);
+				ShowData(vc->GetVehicles());
 			   break;
 			case 2:
 				VehicleAddition(vc);
@@ -111,10 +111,10 @@ bool ConsoleInterface::MainMenu(VehiclesCollection *vc) {
 	}
 }
 
-void ConsoleInterface::ShowData(VehiclesCollection *vc) {
+void ConsoleInterface::ShowData(std::list<Vehicle*> l) const{
 	std::cout << "Index |" << "ID       |" << "Type       |" << "Accessibility|" << std::endl;
 	std::list<Vehicle*>::iterator it;
-	for (it = vc->vehicles.begin(); it != vc->vehicles.end(); it++) {
+	for (it = l.begin(); it != l.end(); it++) {
 		std::cout << "(" << (*it)->GetIndex() << ")   ";
 		std::cout << std::setw(10) << (*it)->GetId() << "  ";
 		if ((*it)->GetType() == 0)
@@ -218,7 +218,7 @@ bool ConsoleInterface::VehicleAddition(VehiclesCollection *vc){
 }
 
 bool ConsoleInterface::VehicleRemoval(VehiclesCollection *vc){
-	ShowData(vc);
+	ShowData(vc->GetVehicles());
 	unsigned long long nm;
 	std::cout << labels[21];
 	std::cin >> nm;
@@ -235,7 +235,7 @@ bool ConsoleInterface::VehicleRemoval(VehiclesCollection *vc){
 }
 
 bool ConsoleInterface::VehicleRental(VehiclesCollection *vc){
-	ShowData(vc);
+	ShowData(vc->GetVehicles());
 	unsigned long long nm;
 	std::cout << labels[24];
 	std::cin >> nm;
@@ -252,7 +252,7 @@ bool ConsoleInterface::VehicleRental(VehiclesCollection *vc){
 }
 
 bool ConsoleInterface::VehicleRestoration(VehiclesCollection *vc){
-	ShowData(vc);
+	ShowData(vc->GetVehicles());
 	unsigned long long nm;
 	std::cout << labels[26];
 	std::cin >> nm;

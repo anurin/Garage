@@ -13,7 +13,7 @@ public:
 	ConsoleInterface();
 
 	bool MainMenu(VehiclesCollection *);
-	void ShowData(VehiclesCollection *);
+	void ShowData(std::list<Vehicle*>) const;
 	bool VehicleAddition(VehiclesCollection *);
 	bool VehicleRemoval(VehiclesCollection *);
 	bool VehicleRental(VehiclesCollection *);

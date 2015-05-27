@@ -134,3 +134,7 @@ void VehiclesCollection::LoadData(std::istream& loading) {
 		}
 	}
 }
+
+std::list<Vehicle*> VehiclesCollection::GetVehicles() {
+	return vehicles;
+}
