@@ -204,9 +204,9 @@ bool ConsoleInterface::VehicleAddition(VehiclesCollection *vc){
 		std::cout << labels[20];
 		std::cin >> tempLiquidSubstance;
 		if (std::cin.fail()){ std::cerr<< labels[22]; ClearBuf(); return false; }
-		if (tempDigitalSpeedo == 'y')
+		if (tempLiquidSubstance == 'y')
 			liquidSubstance = true;
-		else if (tempDigitalSpeedo == 'n')
+		else if (tempLiquidSubstance == 'n')
 			liquidSubstance = false;
 		else
 			return false;

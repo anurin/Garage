@@ -8,24 +8,32 @@ BOOST_AUTO_TEST_SUITE(Observer_Tests)
 
 BOOST_AUTO_TEST_CASE(RentObserver_Saving_Data){
 	VehiclesCollection vc;
-	vc.AddVehicle(motorcycle, "ADA 2311", 30, 30, 40, chopper, true, 0, 0, diesel, 0, true);
+	vc.AddVehicle(motorcycle, "ADA2311", 30, 30, 40, chopper, true, 0, 0, diesel, 0, true);
 	std::stringstream s;
 	RentObserver *r = new RentObserver(3, s);
 	vc.AddObserver(r);
 	vc.Rental(1);
 	std::string a;
 	std::string b;
-	std::string c;
-	s >> a >> b >> c;
-	BOOST_CHECK_EQUAL(a, "ADA");
-	BOOST_CHECK_EQUAL(b, "2311");
-	BOOST_CHECK_EQUAL(c, "rented");
+	s >> a >> b;
+	BOOST_CHECK_EQUAL(a, "ADA2311");
+	BOOST_CHECK_EQUAL(b, "rented");
 	BOOST_CHECK(r->IsRentingPossible());
+	delete r;
 	vc.Restoration(1);
-	s >> a >> b >> c;
-	BOOST_CHECK_EQUAL(a, "ADA");
-	BOOST_CHECK_EQUAL(b, "2311");
-	BOOST_CHECK_EQUAL(c, "restored");
+	s >> a >> b;
+	BOOST_CHECK_EQUAL(a, "ADA2311");
+	BOOST_CHECK_EQUAL(b, "restored");
+}
+
+BOOST_AUTO_TEST_CASE(RentObserver_Rent_Counter){
+	VehiclesCollection vc;
+	vc.AddVehicle(car, "AHDY2343", 30, 30, 30, classic, false, 30, 39, hybrid, 0, false);
+	std::stringstream s;
+	RentObserver *r = new RentObserver(1, s);
+	vc.Rental(1);
+	bool b = r->IsRentingPossible();
+	BOOST_CHECK(!r);
 }
 
 BOOST_AUTO_TEST_SUITE_END()
