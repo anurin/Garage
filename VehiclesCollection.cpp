@@ -55,7 +55,6 @@ bool VehiclesCollection::RmVehicle(unsigned long long a) throw(std::string){
 		if ((*it)->GetIndex() == a){
 			delete (*it);
 			vehicles.remove(*it);
-			std::cout << "The vehicle has been removed.\n";
 			return true;
 		}
 	}
@@ -76,7 +75,6 @@ bool VehiclesCollection::Rental(unsigned long long a) throw(std::string){
 		if ((*it)->GetIndex() == a && (*it)->Accesible()){
 			(*it)->RentVehicle();
 			Notify(*it);
-			std::cout << "The vehicle has been rented.\n";
 			return true;
 		}
 	}
@@ -91,7 +89,6 @@ bool VehiclesCollection::Restoration(unsigned long long a) throw(std::string){
 		if ((*it)->GetIndex() == a && !(*it)->Accesible()){
 			(*it)->RestoreVehicle();
 			Notify(*it);
-			std::cout << "The vehicle has been restored.\n";
 			return true;
 		}
 	}
@@ -119,21 +116,21 @@ void VehiclesCollection::LoadData(std::istream& loading) {
 			newM->LoadVehicle(loading);
 			vehicles.push_back(newM);
 			if (newM->GetIndex() > counter)
-				counter = newM->GetIndex() + 1;
+				counter = newM->GetIndex();
 		}
 		if (vT == car) {
 			Car *newC = new Car;
 			newC->LoadVehicle(loading);
 			vehicles.push_back(newC);
 			if (newC->GetIndex() > counter)
-				counter = newC->GetIndex() + 1;
+				counter = newC->GetIndex();
 		}
 		if (vT == lorry) {
 			Lorry *newL = new Lorry;
 			newL->LoadVehicle(loading);
 			vehicles.push_back(newL);
 			if (newL->GetIndex() > counter)
-				counter = newL->GetIndex() + 1;
+				counter = newL->GetIndex();
 		}
 	}
 }
