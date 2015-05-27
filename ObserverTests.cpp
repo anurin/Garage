@@ -19,11 +19,11 @@ BOOST_AUTO_TEST_CASE(RentObserver_Saving_Data){
 	BOOST_CHECK_EQUAL(a, "ADA2311");
 	BOOST_CHECK_EQUAL(b, "rented");
 	BOOST_CHECK(r->IsRentingPossible());
-	delete r;
 	vc.Restoration(1);
 	s >> a >> b;
 	BOOST_CHECK_EQUAL(a, "ADA2311");
 	BOOST_CHECK_EQUAL(b, "restored");
+	delete r;
 }
 
 BOOST_AUTO_TEST_CASE(RentObserver_Rent_Counter){
@@ -31,9 +31,11 @@ BOOST_AUTO_TEST_CASE(RentObserver_Rent_Counter){
 	vc.AddVehicle(car, "AHDY2343", 30, 30, 30, classic, false, 30, 39, hybrid, 0, false);
 	std::stringstream s;
 	RentObserver *r = new RentObserver(1, s);
+	vc.AddObserver(r);
 	vc.Rental(1);
 	bool b = r->IsRentingPossible();
-	BOOST_CHECK(!r);
+	BOOST_CHECK(!b);
+	delete r;
 }
 
 BOOST_AUTO_TEST_SUITE_END()
