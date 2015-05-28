@@ -22,7 +22,7 @@ ConsoleInterface::ConsoleInterface() {
 	labels.push_back(s);
 	s = "Choose type of vehicle\n(1) Motorcycle\n(2) Car\n(3) Lorry\n";	//9
 	labels.push_back(s);
-	s = "ID (8 characters):\n";		//10
+	s = "ID (max 8 characters):\n";		//10
 	labels.push_back(s);
 	s = "Engine size:\n";			//11
 	labels.push_back(s);

@@ -1,7 +1,7 @@
 	#include "RentObserver.h"
 
-RentObserver::RentObserver(int a, std::ostream& f)
-:counter(0), maxCounter(a), savingStream(f)
+RentObserver::RentObserver(std::ostream& f)
+:savingStream(f)
 {}
 
 RentObserver::~RentObserver(){}
@@ -13,15 +13,7 @@ void RentObserver::Update(Vehicle *v){
 	}
 	else{
 		savingStream << "rented";
-		counter++;
 	}
 	savingStream << std::endl;
-
 }
 
-bool RentObserver::IsRentingPossible() const{
-	if (counter < maxCounter)
-		return true;
-	else
-		return false;
-}

@@ -1,11 +1,14 @@
 #include "ConsoleInterface.h"
 #include "RentObserver.h"
+#include "CountObserver.h"
 
 int main() {
 	std::ofstream observerFile("observer.txt", std::ios::app);
-	RentObserver observer(5, observerFile);
+	RentObserver rObserver(observerFile);
+	CountObserver cObserver(3);
 	VehiclesCollection vc;
-	vc.AddObserver(&observer);
+	vc.AddObserver(&cObserver);
+	vc.AddObserver(&rObserver);
 	ConsoleInterface i;
 	i.MainMenu(&vc);
 	observerFile.close();

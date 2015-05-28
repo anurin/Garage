@@ -5,6 +5,7 @@
 #include "Vehicle.h"
 #include "Observer.h"
 #include "RentObserver.h"
+#include "CountObserver.h"
 #include "Motorcycle.h"
 #include "Car.h"
 #include "Lorry.h"

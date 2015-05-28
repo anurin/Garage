@@ -9,6 +9,7 @@ lib_SOURCES = \
 	Lorry.cpp \
 	Motorcycle.cpp \
 	RentObserver.cpp \
+	CountObserver.cpp \
 	VehiclesCollection.cpp \
 	ConsoleInterface.cpp 
 

@@ -64,7 +64,7 @@ bool VehiclesCollection::RmVehicle(unsigned long long a) throw(std::string){
 }
 
 bool VehiclesCollection::Rental(unsigned long long a) throw(std::string){
-	RentObserver* temp = static_cast<RentObserver *>(observers.front());
+	CountObserver* temp = static_cast<CountObserver *>(observers.front());
 	if (!temp->IsRentingPossible()){
 		std::string s = "Limit has been reached.\n";
 		throw s;

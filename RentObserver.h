@@ -6,13 +6,10 @@
 
 class RentObserver : public Observer {
 public:
-	RentObserver(int, std::ostream&);
+	RentObserver(std::ostream&);
 	virtual ~RentObserver();
-	bool IsRentingPossible() const;
 	void Update(Vehicle *);
 protected:
-	int counter;
-	const int maxCounter;
 	std::ostream& savingStream;
 };
 
